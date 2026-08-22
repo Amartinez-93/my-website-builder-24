@@ -8,14 +8,14 @@ import { bodyStyles, modelsForMake, uniqueMakes, uniqueYears, vehicles } from "@
 import { site } from "@/lib/site";
 
 export interface InventorySearch {
-  make?: string;
-  model?: string;
-  year?: string;
-  body?: string;
-  transmission?: string;
-  fuel?: string;
-  maxPrice?: string;
-  maxMileage?: string;
+  make?: string | undefined;
+  model?: string | undefined;
+  year?: string | undefined;
+  body?: string | undefined;
+  transmission?: string | undefined;
+  fuel?: string | undefined;
+  maxPrice?: string | undefined;
+  maxMileage?: string | undefined;
 }
 
 const str = (v: unknown) => (typeof v === "string" && v.length > 0 ? v : undefined);

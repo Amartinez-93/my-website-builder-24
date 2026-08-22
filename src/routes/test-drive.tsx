@@ -7,8 +7,8 @@ import { vehicles, vehicleTitle } from "@/lib/inventory";
 import { site } from "@/lib/site";
 
 export const Route = createFileRoute("/test-drive")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    vehicle: (typeof search["vehicle"] === "string" ? search["vehicle"] : undefined) as string | undefined,
+  validateSearch: (search: Record<string, unknown>): { vehicle: string | undefined } => ({
+    vehicle: typeof search["vehicle"] === "string" ? search["vehicle"] : undefined,
   }),
   head: () => ({
     meta: [
