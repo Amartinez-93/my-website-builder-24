@@ -21,16 +21,20 @@ export interface InventorySearch {
 const str = (v: unknown) => (typeof v === "string" && v.length > 0 ? v : undefined);
 
 export const Route = createFileRoute("/inventory/")({
-  validateSearch: (search: Record<string, unknown>): InventorySearch => ({
-    make: str(search["make"]),
-    model: str(search["model"]),
-    year: str(search["year"]),
-    body: str(search["body"]),
-    transmission: str(search["transmission"]),
-    fuel: str(search["fuel"]),
-    maxPrice: str(search["maxPrice"]),
-    maxMileage: str(search["maxMileage"]),
-  }),
+  validateSearch: (search: Record<string, unknown>): InventorySearch => {
+    const clean = (val: unknown): string | undefined => 
+      typeof val === "string" && val.length > 0 ? val : undefined;
+    return {
+      make: clean(search["make"]),
+      model: clean(search["model"]),
+      year: clean(search["year"]),
+      body: clean(search["body"]),
+      transmission: clean(search["transmission"]),
+      fuel: clean(search["fuel"]),
+      maxPrice: clean(search["maxPrice"]),
+      maxMileage: clean(search["maxMileage"]),
+    } as InventorySearch;
+  },
   head: () => ({
     meta: [
       { title: `Used Cars, SUVs & Trucks for Sale in ${site.city}, GA | ${site.name}` },

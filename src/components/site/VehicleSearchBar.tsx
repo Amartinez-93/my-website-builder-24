@@ -28,13 +28,13 @@ export function VehicleSearchBar() {
         navigate({
           to: "/inventory",
           search: {
-            make: clean(make, ""),
-            model: clean(model, ""),
-            year: clean(year, ""),
-            body: clean(body, ""),
-            maxPrice: clean(maxPrice, ""),
-            maxMileage: clean(maxMileage, ""),
-          },
+            make: clean(make, "") ?? "",
+            model: clean(model, "") ?? "",
+            year: clean(year, "") ?? "",
+            body: clean(body, "") ?? "",
+            maxPrice: clean(maxPrice, "") ?? "",
+            maxMileage: clean(maxMileage, "") ?? "",
+          } as any,
         });
       }}
       className="rounded-lg border border-border bg-card p-5 shadow-[var(--shadow-card)] md:p-6"
