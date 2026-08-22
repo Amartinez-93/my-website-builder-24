@@ -92,10 +92,10 @@ function Home() {
               <Link to="/inventory">Browse Inventory</Link>
             </Button>
             <Button asChild variant="heroOutline" size="xl">
-              <Link to="/financing">Get Pre-Approved</Link>
+              <Link to="/financing" search={{ vehicle: undefined }}>Get Pre-Approved</Link>
             </Button>
             <Button asChild variant="heroOutline" size="xl">
-              <Link to="/test-drive">Schedule a Test Drive</Link>
+              <Link to="/test-drive" search={{ vehicle: undefined }}>Schedule a Test Drive</Link>
             </Button>
           </div>
           <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-sm text-ink-foreground/75">
@@ -180,7 +180,7 @@ function Home() {
             </p>
           </div>
           <Button asChild variant="hero" size="xl">
-            <Link to="/financing">Get Pre-Approved</Link>
+            <Link to="/financing" search={{ vehicle: undefined }}>Get Pre-Approved</Link>
           </Button>
         </div>
       </section>

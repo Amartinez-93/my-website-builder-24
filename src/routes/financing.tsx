@@ -7,8 +7,8 @@ import { submitLead } from "@/lib/lead";
 import { site } from "@/lib/site";
 
 export const Route = createFileRoute("/financing")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    vehicle: typeof search.vehicle === "string" ? search.vehicle : undefined,
+  validateSearch: (search: Record<string, unknown>): { vehicle: string | undefined } => ({
+    vehicle: typeof search["vehicle"] === "string" ? search["vehicle"] : undefined,
   }),
   head: () => ({
     meta: [

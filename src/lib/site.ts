@@ -1,17 +1,17 @@
 export const site = {
   name: "88 Auto Sales LLC",
   shortName: "88 Auto Sales",
-  city: "Norcross",
+  city: "Snellville",
   state: "GA",
-  addressLine: "1288 Peachtree Industrial Blvd",
-  zip: "30093",
-  phone: "(770) 555-0188",
-  phoneHref: "tel:+17705550188",
-  email: "sales@88autosalesllc.com",
+  addressLine: "2140 McGee Rd",
+  zip: "30078",
+  phone: "(401-654-8310,  706-360-5050",
+  phoneHref: "tel:+14016548310",
+  email: "88AutoSalesLLC@gmail.com",
   hours: [
-    { day: "Monday – Friday", time: "9:00 AM – 7:00 PM" },
-    { day: "Saturday", time: "9:00 AM – 6:00 PM" },
-    { day: "Sunday", time: "Closed" },
+    { day: "Monday – Friday", time: "BY Appointment" },
+    { day: "Saturday", time: "BY Appointment" },
+    { day: "Sunday", time: "BY Appointment" },
   ],
 } as const;
 
