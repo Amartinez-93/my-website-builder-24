@@ -10,12 +10,30 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CarFinderRouteImport } from './routes/car-finder'
+import { Route as FinancingRouteImport } from './routes/financing'
+import { Route as TestDriveRouteImport } from './routes/test-drive'
 import { Route as InventoryIndexRouteImport } from './routes/inventory.index'
 import { Route as InventoryVehicleIdRouteImport } from './routes/inventory.$vehicleId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CarFinderRoute = CarFinderRouteImport.update({
+  id: '/car-finder',
+  path: '/car-finder',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FinancingRoute = FinancingRouteImport.update({
+  id: '/financing',
+  path: '/financing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TestDriveRoute = TestDriveRouteImport.update({
+  id: '/test-drive',
+  path: '/test-drive',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InventoryIndexRoute = InventoryIndexRouteImport.update({
@@ -31,30 +49,61 @@ const InventoryVehicleIdRoute = InventoryVehicleIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/car-finder': typeof CarFinderRoute
+  '/financing': typeof FinancingRoute
+  '/test-drive': typeof TestDriveRoute
   '/inventory/$vehicleId': typeof InventoryVehicleIdRoute
   '/inventory/': typeof InventoryIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/car-finder': typeof CarFinderRoute
+  '/financing': typeof FinancingRoute
+  '/test-drive': typeof TestDriveRoute
   '/inventory/$vehicleId': typeof InventoryVehicleIdRoute
   '/inventory': typeof InventoryIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/car-finder': typeof CarFinderRoute
+  '/financing': typeof FinancingRoute
+  '/test-drive': typeof TestDriveRoute
   '/inventory/$vehicleId': typeof InventoryVehicleIdRoute
   '/inventory/': typeof InventoryIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/inventory/$vehicleId' | '/inventory/'
+  fullPaths:
+    | '/'
+    | '/car-finder'
+    | '/financing'
+    | '/test-drive'
+    | '/inventory/$vehicleId'
+    | '/inventory/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/inventory/$vehicleId' | '/inventory'
-  id: '__root__' | '/' | '/inventory/$vehicleId' | '/inventory/'
+  to:
+    | '/'
+    | '/car-finder'
+    | '/financing'
+    | '/test-drive'
+    | '/inventory/$vehicleId'
+    | '/inventory'
+  id:
+    | '__root__'
+    | '/'
+    | '/car-finder'
+    | '/financing'
+    | '/test-drive'
+    | '/inventory/$vehicleId'
+    | '/inventory/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CarFinderRoute: typeof CarFinderRoute
+  FinancingRoute: typeof FinancingRoute
+  TestDriveRoute: typeof TestDriveRoute
   InventoryVehicleIdRoute: typeof InventoryVehicleIdRoute
   InventoryIndexRoute: typeof InventoryIndexRoute
 }
@@ -66,6 +115,27 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/car-finder': {
+      id: '/car-finder'
+      path: '/car-finder'
+      fullPath: '/car-finder'
+      preLoaderRoute: typeof CarFinderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/financing': {
+      id: '/financing'
+      path: '/financing'
+      fullPath: '/financing'
+      preLoaderRoute: typeof FinancingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/test-drive': {
+      id: '/test-drive'
+      path: '/test-drive'
+      fullPath: '/test-drive'
+      preLoaderRoute: typeof TestDriveRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/inventory/': {
@@ -87,6 +157,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CarFinderRoute: CarFinderRoute,
+  FinancingRoute: FinancingRoute,
+  TestDriveRoute: TestDriveRoute,
   InventoryVehicleIdRoute: InventoryVehicleIdRoute,
   InventoryIndexRoute: InventoryIndexRoute,
 }
