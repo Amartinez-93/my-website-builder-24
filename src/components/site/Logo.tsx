@@ -15,14 +15,14 @@ export function Logo({ onDark = false }: { onDark?: boolean }) {
             onDark ? "text-ink-foreground" : "text-foreground"
           }`}
         >
-          Auto Sales
+          88 AUTO SALES
         </span>
         <span
           className={`text-[0.62rem] font-semibold uppercase tracking-[0.22em] ${
             onDark ? "text-ink-foreground/60" : "text-muted-foreground"
           }`}
         >
-          {site.city}, {site.state}
+          {"\n"}
         </span>
       </span>
     </span>
