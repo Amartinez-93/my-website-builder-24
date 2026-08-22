@@ -1,11 +1,14 @@
+import logoAsset from "@/assets/logo.jpg.asset.json";
 import { site } from "@/lib/site";
 
 export function Logo({ onDark = false }: { onDark?: boolean }) {
   return (
     <span className="flex items-center gap-2.5">
-      <span className="flex h-9 w-9 items-center justify-center rounded-md bg-primary font-display text-xl font-bold leading-none text-primary-foreground">
-        88
-      </span>
+      <img
+        src={logoAsset.url}
+        alt={`${site.name} logo`}
+        className="h-9 w-auto rounded-md bg-transparent object-contain"
+      />
       <span className="flex flex-col leading-none">
         <span
           className={`font-display text-xl font-bold uppercase tracking-tight ${
