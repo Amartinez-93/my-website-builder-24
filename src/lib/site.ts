@@ -5,7 +5,7 @@ export const site = {
   state: "GA",
   addressLine: "2140 McGee Rd",
   zip: "30078",
-  phone: "(401-654-8310,  706-360-5050",
+  phone: "Will 401-654-8310, Alex  706-360-5050",
   phoneHref: "tel:+14016548310",
   email: "88AutoSalesLLC@gmail.com",
   hours: [
