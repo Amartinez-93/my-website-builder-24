@@ -22,14 +22,14 @@ const str = (v: unknown) => (typeof v === "string" && v.length > 0 ? v : undefin
 
 export const Route = createFileRoute("/inventory/")({
   validateSearch: (search: Record<string, unknown>): InventorySearch => ({
-    make: str(search.make),
-    model: str(search.model),
-    year: str(search.year),
-    body: str(search.body),
-    transmission: str(search.transmission),
-    fuel: str(search.fuel),
-    maxPrice: str(search.maxPrice),
-    maxMileage: str(search.maxMileage),
+    make: str(search["make"]),
+    model: str(search["model"]),
+    year: str(search["year"]),
+    body: str(search["body"]),
+    transmission: str(search["transmission"]),
+    fuel: str(search["fuel"]),
+    maxPrice: str(search["maxPrice"]),
+    maxMileage: str(search["maxMileage"]),
   }),
   head: () => ({
     meta: [
