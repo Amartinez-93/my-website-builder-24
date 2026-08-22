@@ -17,7 +17,7 @@ export function Field({
   type?: string;
   required?: boolean;
   placeholder?: string;
-  defaultValue?: string;
+  defaultValue?: string | undefined;
   className?: string;
 }) {
   return (
@@ -51,7 +51,7 @@ export function TextField({
   name: string;
   rows?: number;
   placeholder?: string;
-  defaultValue?: string;
+  defaultValue?: string | undefined;
   className?: string;
 }) {
   return (
@@ -83,7 +83,7 @@ export function SelectField({
   name: string;
   options: readonly string[];
   required?: boolean;
-  defaultValue?: string;
+  defaultValue?: string | undefined;
   className?: string;
 }) {
   return (
