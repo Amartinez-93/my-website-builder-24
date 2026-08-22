@@ -10,8 +10,12 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as CarFinderRouteImport } from './routes/car-finder'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as FinancingRouteImport } from './routes/financing'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as TestDriveRouteImport } from './routes/test-drive'
 import { Route as InventoryIndexRouteImport } from './routes/inventory.index'
 import { Route as InventoryVehicleIdRouteImport } from './routes/inventory.$vehicleId'
@@ -21,14 +25,34 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CarFinderRoute = CarFinderRouteImport.update({
   id: '/car-finder',
   path: '/car-finder',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FinancingRoute = FinancingRouteImport.update({
   id: '/financing',
   path: '/financing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TestDriveRoute = TestDriveRouteImport.update({
@@ -49,16 +73,24 @@ const InventoryVehicleIdRoute = InventoryVehicleIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/car-finder': typeof CarFinderRoute
+  '/contact': typeof ContactRoute
   '/financing': typeof FinancingRoute
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
   '/test-drive': typeof TestDriveRoute
   '/inventory/$vehicleId': typeof InventoryVehicleIdRoute
   '/inventory/': typeof InventoryIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/car-finder': typeof CarFinderRoute
+  '/contact': typeof ContactRoute
   '/financing': typeof FinancingRoute
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
   '/test-drive': typeof TestDriveRoute
   '/inventory/$vehicleId': typeof InventoryVehicleIdRoute
   '/inventory': typeof InventoryIndexRoute
@@ -66,8 +98,12 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/car-finder': typeof CarFinderRoute
+  '/contact': typeof ContactRoute
   '/financing': typeof FinancingRoute
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
   '/test-drive': typeof TestDriveRoute
   '/inventory/$vehicleId': typeof InventoryVehicleIdRoute
   '/inventory/': typeof InventoryIndexRoute
@@ -76,24 +112,36 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
     | '/car-finder'
+    | '/contact'
     | '/financing'
+    | '/privacy'
+    | '/terms'
     | '/test-drive'
     | '/inventory/$vehicleId'
     | '/inventory/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
     | '/car-finder'
+    | '/contact'
     | '/financing'
+    | '/privacy'
+    | '/terms'
     | '/test-drive'
     | '/inventory/$vehicleId'
     | '/inventory'
   id:
     | '__root__'
     | '/'
+    | '/about'
     | '/car-finder'
+    | '/contact'
     | '/financing'
+    | '/privacy'
+    | '/terms'
     | '/test-drive'
     | '/inventory/$vehicleId'
     | '/inventory/'
@@ -101,8 +149,12 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   CarFinderRoute: typeof CarFinderRoute
+  ContactRoute: typeof ContactRoute
   FinancingRoute: typeof FinancingRoute
+  PrivacyRoute: typeof PrivacyRoute
+  TermsRoute: typeof TermsRoute
   TestDriveRoute: typeof TestDriveRoute
   InventoryVehicleIdRoute: typeof InventoryVehicleIdRoute
   InventoryIndexRoute: typeof InventoryIndexRoute
@@ -117,6 +169,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/car-finder': {
       id: '/car-finder'
       path: '/car-finder'
@@ -124,11 +183,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CarFinderRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/financing': {
       id: '/financing'
       path: '/financing'
       fullPath: '/financing'
       preLoaderRoute: typeof FinancingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/test-drive': {
@@ -157,8 +237,12 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   CarFinderRoute: CarFinderRoute,
+  ContactRoute: ContactRoute,
   FinancingRoute: FinancingRoute,
+  PrivacyRoute: PrivacyRoute,
+  TermsRoute: TermsRoute,
   TestDriveRoute: TestDriveRoute,
   InventoryVehicleIdRoute: InventoryVehicleIdRoute,
   InventoryIndexRoute: InventoryIndexRoute,
