@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { vehicles as demoVehicles, type BodyStyle, type Vehicle } from "@/lib/inventory";
+import type { BodyStyle, Vehicle } from "@/lib/inventory";
 
 export interface VehicleRow {
   id: string;
@@ -79,17 +79,17 @@ export async function fetchAllVehicles(): Promise<VehicleRow[]> {
 }
 
 /**
- * Live inventory from the database. While no vehicles have been added yet,
- * the original sample vehicles are shown so the site never looks empty.
+ * Live inventory from the database. When nothing has been added yet the site
+ * shows a "coming soon" placeholder instead of sample cars.
  */
 export function useInventory() {
   const query = useQuery({ queryKey: ["vehicles", "public"], queryFn: fetchPublicVehicles });
   const rows = query.data ?? [];
   const list = rows.map(rowToVehicle);
-  const isSample = !query.isLoading && list.length === 0;
+  const isEmpty = !query.isLoading && list.length === 0;
   return {
-    vehicles: isSample ? demoVehicles : list,
-    isSample,
+    vehicles: list,
+    isEmpty,
     isLoading: query.isLoading,
   };
 }

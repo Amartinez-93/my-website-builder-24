@@ -18,6 +18,7 @@ import heroImage from "@/assets/hero-dealership.jpg";
 import { Button } from "@/components/ui/button";
 import { VehicleSearchBar } from "@/components/site/VehicleSearchBar";
 import { VehicleCard } from "@/components/site/VehicleCard";
+import { ComingSoon } from "@/components/site/ComingSoon";
 import { CarFinderForm } from "@/components/site/CarFinderForm";
 import { bodyStyles, vehicles } from "@/lib/inventory";
 import { site } from "@/lib/site";
@@ -131,11 +132,17 @@ function Home() {
               <Link to="/inventory">View All Inventory</Link>
             </Button>
           </div>
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {featured.map((v) => (
-              <VehicleCard key={v.id} vehicle={v} />
-            ))}
-          </div>
+          {featured.length > 0 ? (
+            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {featured.map((v) => (
+                <VehicleCard key={v.id} vehicle={v} />
+              ))}
+            </div>
+          ) : (
+            <div className="mt-8">
+              <ComingSoon />
+            </div>
+          )}
         </div>
       </section>
 
