@@ -8,6 +8,7 @@ import { Field, SelectField, TextField } from "@/components/site/Field";
 import { PageHeader } from "@/components/site/PageHeader";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
+import type { TablesInsert } from "@/integrations/supabase/types";
 import { fetchAllVehicles, slugify, type VehicleRow } from "@/lib/vehicles";
 import { formatMiles, formatPrice } from "@/lib/inventory";
 import { site } from "@/lib/site";
@@ -63,7 +64,7 @@ function AdminPage() {
   };
 
   const save = useMutation({
-    mutationFn: async (payload: Record<string, unknown> & { id?: string }) => {
+    mutationFn: async (payload: TablesInsert<"vehicles">) => {
       if (payload.id) {
         const { id, ...rest } = payload;
         const { error } = await supabase.from("vehicles").update(rest).eq("id", id);
@@ -96,7 +97,10 @@ function AdminPage() {
 
   const claim = async () => {
     const { data, error } = await supabase.rpc("claim_first_admin");
-    if (error) return toast.error(error.message);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
     if (data) {
       toast.success("You now have admin access.");
       window.location.reload();
