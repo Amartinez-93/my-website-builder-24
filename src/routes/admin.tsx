@@ -63,7 +63,7 @@ function AdminPage() {
   };
 
   const save = useMutation({
-    mutationFn: async (payload: Record<string, unknown> & { id?: string }) => {
+    mutationFn: async (payload: TablesInsert<"vehicles">) => {
       if (payload.id) {
         const { id, ...rest } = payload;
         const { error } = await supabase.from("vehicles").update(rest).eq("id", id);
