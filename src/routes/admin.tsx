@@ -96,7 +96,10 @@ function AdminPage() {
 
   const claim = async () => {
     const { data, error } = await supabase.rpc("claim_first_admin");
-    if (error) return toast.error(error.message);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
     if (data) {
       toast.success("You now have admin access.");
       window.location.reload();
