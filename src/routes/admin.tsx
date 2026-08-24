@@ -8,6 +8,7 @@ import { Field, SelectField, TextField } from "@/components/site/Field";
 import { PageHeader } from "@/components/site/PageHeader";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
+import type { TablesInsert } from "@/integrations/supabase/types";
 import { fetchAllVehicles, slugify, type VehicleRow } from "@/lib/vehicles";
 import { formatMiles, formatPrice } from "@/lib/inventory";
 import { site } from "@/lib/site";
