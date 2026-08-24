@@ -4,6 +4,7 @@ import { SlidersHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PageHeader } from "@/components/site/PageHeader";
 import { VehicleCard } from "@/components/site/VehicleCard";
+import { ComingSoon } from "@/components/site/ComingSoon";
 import { bodyStyles, modelsForMake, uniqueMakes, uniqueYears, vehicles } from "@/lib/inventory";
 import { site } from "@/lib/site";
 
@@ -227,14 +228,15 @@ function InventoryPage() {
                 ))}
               </div>
             ) : (
-              <div className="mt-6 rounded-lg border border-dashed border-border bg-card p-10 text-center">
-                <h3 className="text-xl font-bold">No matches right now</h3>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Our stock changes weekly. Let us source the exact vehicle you want.
-                </p>
-                <Button asChild variant="hero" className="mt-5">
-                  <a href="/car-finder">Use Our Car Finder</a>
-                </Button>
+              <div className="mt-6">
+                <ComingSoon
+                  title={vehicles.length === 0 ? "New Inventory Coming Soon" : "No matches right now"}
+                  description={
+                    vehicles.length === 0
+                      ? "Our next round of inspected pre-owned vehicles is on the way. Tell us what you're after and we'll source it for you."
+                      : "Our stock changes weekly. Let us source the exact vehicle you want."
+                  }
+                />
               </div>
             )}
           </div>
