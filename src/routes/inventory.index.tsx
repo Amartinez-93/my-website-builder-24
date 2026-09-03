@@ -169,10 +169,15 @@ function InventoryPage() {
               <Filter
                 label="Model"
                 value={model}
-                options={modelsForMake(make === ANY ? "any" : make)}
+                options={modelsForMakeOf(vehicles, make === ANY ? "any" : make)}
                 onChange={setModel}
               />
-              <Filter label="Year" value={year} options={uniqueYears().map(String)} onChange={setYear} />
+              <Filter
+                label="Year"
+                value={year}
+                options={uniqueYearsOf(vehicles).map(String)}
+                onChange={setYear}
+              />
               <Filter label="Body Style" value={body} options={[...bodyStyles]} onChange={setBody} />
               <Filter
                 label="Max Price"
