@@ -160,7 +160,7 @@ function InventoryPage() {
               <Filter
                 label="Make"
                 value={make}
-                options={uniqueMakes()}
+                options={uniqueMakesOf(vehicles)}
                 onChange={(v) => {
                   setMake(v);
                   setModel(ANY);
