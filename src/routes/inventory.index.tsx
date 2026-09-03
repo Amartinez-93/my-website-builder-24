@@ -5,7 +5,8 @@ import { Button } from "@/components/ui/button";
 import { PageHeader } from "@/components/site/PageHeader";
 import { VehicleCard } from "@/components/site/VehicleCard";
 import { ComingSoon } from "@/components/site/ComingSoon";
-import { bodyStyles, modelsForMake, uniqueMakes, uniqueYears, vehicles } from "@/lib/inventory";
+import { bodyStyles } from "@/lib/inventory";
+import { modelsForMakeOf, uniqueMakesOf, uniqueYearsOf, useInventory } from "@/lib/vehicles";
 import { site } from "@/lib/site";
 
 export interface InventorySearch {
@@ -99,6 +100,7 @@ function InventoryPage() {
   const [maxPrice, setMaxPrice] = useState(search.maxPrice ?? ANY);
   const [maxMileage, setMaxMileage] = useState(search.maxMileage ?? ANY);
   const [sort, setSort] = useState("Newest");
+  const { vehicles, isLoading } = useInventory();
 
   const reset = () => {
     setMake(ANY);
@@ -158,7 +160,7 @@ function InventoryPage() {
               <Filter
                 label="Make"
                 value={make}
-                options={uniqueMakes()}
+                options={uniqueMakesOf(vehicles)}
                 onChange={(v) => {
                   setMake(v);
                   setModel(ANY);
@@ -167,10 +169,15 @@ function InventoryPage() {
               <Filter
                 label="Model"
                 value={model}
-                options={modelsForMake(make === ANY ? "any" : make)}
+                options={modelsForMakeOf(vehicles, make === ANY ? "any" : make)}
                 onChange={setModel}
               />
-              <Filter label="Year" value={year} options={uniqueYears().map(String)} onChange={setYear} />
+              <Filter
+                label="Year"
+                value={year}
+                options={uniqueYearsOf(vehicles).map(String)}
+                onChange={setYear}
+              />
               <Filter label="Body Style" value={body} options={[...bodyStyles]} onChange={setBody} />
               <Filter
                 label="Max Price"
@@ -221,7 +228,9 @@ function InventoryPage() {
               </label>
             </div>
 
-            {results.length > 0 ? (
+            {isLoading ? (
+              <p className="mt-6 text-sm text-muted-foreground">Loading inventory…</p>
+            ) : results.length > 0 ? (
               <div className="mt-6 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
                 {results.map((v) => (
                   <VehicleCard key={v.id} vehicle={v} />

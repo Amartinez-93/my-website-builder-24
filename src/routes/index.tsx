@@ -20,7 +20,8 @@ import { VehicleSearchBar } from "@/components/site/VehicleSearchBar";
 import { VehicleCard } from "@/components/site/VehicleCard";
 import { ComingSoon } from "@/components/site/ComingSoon";
 import { CarFinderForm } from "@/components/site/CarFinderForm";
-import { bodyStyles, vehicles } from "@/lib/inventory";
+import { bodyStyles } from "@/lib/inventory";
+import { useInventory } from "@/lib/vehicles";
 import { site } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
@@ -63,7 +64,9 @@ const testimonials = [
 ];
 
 function Home() {
-  const featured = vehicles.filter((v) => v.featured).slice(0, 6);
+  const { vehicles } = useInventory();
+  const flagged = vehicles.filter((v) => v.featured);
+  const featured = (flagged.length > 0 ? flagged : vehicles).slice(0, 6);
 
   return (
     <>

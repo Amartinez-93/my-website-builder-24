@@ -3,7 +3,8 @@ import { Button } from "@/components/ui/button";
 import { PageHeader } from "@/components/site/PageHeader";
 import { Field, SelectField, TextField } from "@/components/site/Field";
 import { submitLead } from "@/lib/lead";
-import { vehicles, vehicleTitle } from "@/lib/inventory";
+import { vehicleTitle } from "@/lib/inventory";
+import { useInventory } from "@/lib/vehicles";
 import { site } from "@/lib/site";
 
 export const Route = createFileRoute("/test-drive")({
@@ -42,6 +43,7 @@ const times = [
 
 function TestDrivePage() {
   const { vehicle } = Route.useSearch();
+  const { vehicles } = useInventory();
   const options = ["Not sure yet — help me choose", ...vehicles.map(vehicleTitle)];
 
   return (
