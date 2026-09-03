@@ -43,6 +43,7 @@ const times = [
 
 function TestDrivePage() {
   const { vehicle } = Route.useSearch();
+  const { vehicles } = useInventory();
   const options = ["Not sure yet — help me choose", ...vehicles.map(vehicleTitle)];
 
   return (
