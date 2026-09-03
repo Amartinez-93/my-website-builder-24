@@ -228,7 +228,9 @@ function InventoryPage() {
               </label>
             </div>
 
-            {results.length > 0 ? (
+            {isLoading ? (
+              <p className="mt-6 text-sm text-muted-foreground">Loading inventory…</p>
+            ) : results.length > 0 ? (
               <div className="mt-6 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
                 {results.map((v) => (
                   <VehicleCard key={v.id} vehicle={v} />
