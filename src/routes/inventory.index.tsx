@@ -5,7 +5,8 @@ import { Button } from "@/components/ui/button";
 import { PageHeader } from "@/components/site/PageHeader";
 import { VehicleCard } from "@/components/site/VehicleCard";
 import { ComingSoon } from "@/components/site/ComingSoon";
-import { bodyStyles, modelsForMake, uniqueMakes, uniqueYears, vehicles } from "@/lib/inventory";
+import { bodyStyles } from "@/lib/inventory";
+import { modelsForMakeOf, uniqueMakesOf, uniqueYearsOf, useInventory } from "@/lib/vehicles";
 import { site } from "@/lib/site";
 
 export interface InventorySearch {
