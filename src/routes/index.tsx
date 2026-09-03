@@ -20,7 +20,8 @@ import { VehicleSearchBar } from "@/components/site/VehicleSearchBar";
 import { VehicleCard } from "@/components/site/VehicleCard";
 import { ComingSoon } from "@/components/site/ComingSoon";
 import { CarFinderForm } from "@/components/site/CarFinderForm";
-import { bodyStyles, vehicles } from "@/lib/inventory";
+import { bodyStyles } from "@/lib/inventory";
+import { useInventory } from "@/lib/vehicles";
 import { site } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
