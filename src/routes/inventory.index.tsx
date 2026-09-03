@@ -100,6 +100,7 @@ function InventoryPage() {
   const [maxPrice, setMaxPrice] = useState(search.maxPrice ?? ANY);
   const [maxMileage, setMaxMileage] = useState(search.maxMileage ?? ANY);
   const [sort, setSort] = useState("Newest");
+  const { vehicles, isLoading } = useInventory();
 
   const reset = () => {
     setMake(ANY);
