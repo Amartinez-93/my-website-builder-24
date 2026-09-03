@@ -4,15 +4,37 @@ import { CreditCard, MessageSquare, Phone, CalendarClock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Field, TextField } from "@/components/site/Field";
 import { submitLead } from "@/lib/lead";
-import { formatMiles, formatPrice, getVehicle, vehicleTitle } from "@/lib/inventory";
+import { formatMiles, formatPrice, vehicleTitle } from "@/lib/inventory";
+import { rowToVehicle, type VehicleRow } from "@/lib/vehicles";
+import { getVehicleBySlug } from "@/lib/vehicles.functions";
 import { site } from "@/lib/site";
 
 export const Route = createFileRoute("/inventory/$vehicleId")({
-  loader: ({ params }) => {
-    const vehicle = getVehicle(params.vehicleId);
-    if (!vehicle) throw notFound();
-    return { vehicle };
+  loader: async ({ params }) => {
+    const row = await getVehicleBySlug({ data: { slug: params.vehicleId } });
+    if (!row) throw notFound();
+    return { vehicle: rowToVehicle(row as unknown as VehicleRow) };
   },
+  errorComponent: () => (
+    <div className="container-page py-24 text-center">
+      <h1 className="text-3xl font-bold">Vehicle unavailable</h1>
+      <p className="mt-3 text-muted-foreground">
+        We couldn't load this vehicle right now. Please try again in a moment.
+      </p>
+      <Link to="/inventory" className="mt-6 inline-block font-semibold text-primary">
+        Back to inventory
+      </Link>
+    </div>
+  ),
+  notFoundComponent: () => (
+    <div className="container-page py-24 text-center">
+      <h1 className="text-3xl font-bold">This vehicle is no longer listed</h1>
+      <p className="mt-3 text-muted-foreground">It may have sold. Browse what's on the lot now.</p>
+      <Link to="/inventory" className="mt-6 inline-block font-semibold text-primary">
+        Back to inventory
+      </Link>
+    </div>
+  ),
   head: ({ loaderData }) => {
     if (!loaderData) {
       return { meta: [{ title: "Vehicle unavailable" }, { name: "robots", content: "noindex" }] };
