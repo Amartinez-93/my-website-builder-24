@@ -64,7 +64,9 @@ const testimonials = [
 ];
 
 function Home() {
-  const featured = vehicles.filter((v) => v.featured).slice(0, 6);
+  const { vehicles } = useInventory();
+  const flagged = vehicles.filter((v) => v.featured);
+  const featured = (flagged.length > 0 ? flagged : vehicles).slice(0, 6);
 
   return (
     <>
